@@ -142,7 +142,7 @@ class Claims(StorageCommandPlugin):
         uuid = connection.player.uuid
         if self.planet_protect.check_protection(location):
             send_message(connection, "This world is already protected.")
-        elif not str(location).startswith("CelestialWorld"):
+        elif not (str(location).startswith("CelestialWorld") or str(location).startswith("InstanceWorld:playerstation")  or str(location).startswith("InstanceWorld:planet") or str(location).startswith("InstanceWorld:asteroidfield")):
             send_message(connection, "This world cannot be claimed.")
         elif uuid not in self.storage["owners"]:
             self.storage["owners"][uuid] = []
