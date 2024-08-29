@@ -391,8 +391,8 @@ class Claims(StorageCommandPlugin):
                 allow = "allowed"
             if not data:
                 send_message(connection, "Argument not recognized. "
-                                                    "Usage: /planet_access ["
-                                                    "name] add/remove")
+                                                    "Usage: /planet_access add/remove ["
+                                                    "name]")
             elif data[0].lower() == "whitelist":
                 if data[1].lower() == "true":
                     access["whitelist"] = True
@@ -423,7 +423,7 @@ class Claims(StorageCommandPlugin):
                                          "may enter) or a blacklist (default, "
                                          "only players on the list are"
                                          " forbidden).")
-                send_message(connection, "/planet_access [name] add remove")
+                send_message(connection, "/planet_access add/remove [name]")
                 send_message(connection, "Adds or removes a player from the "
                                          "list.")
                 send_message(connection, "/planet_access list")
