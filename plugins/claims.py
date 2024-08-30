@@ -170,7 +170,7 @@ class Claims(StorageCommandPlugin):
             send_message(connection, "This world is not protected.")
         elif not self.is_owner(connection, location):
             send_message(connection, "You don't own this world!")
-        elif str(location).startswith("ClientShipWorld"): 
+        elif not isinstance(planet, str) and location.locationtype() == "ShipWorld": 
             send_message(connection, "Can't unclaim your ship!")
         else:
             self.storage["owners"][uuid].remove(str(location))
@@ -275,7 +275,7 @@ class Claims(StorageCommandPlugin):
         if target is not None:
             if not self.is_owner(connection, location):
                 send_message(connection, "You don't own this world!")
-            elif str(location).startswith("ClientShipWorld"):
+            elif not isinstance(planet, str) and location.locationtype() == "ShipWorld": 
                 send_message(connection, "Can't transfer ownership of your "
                                          "ship!")
             elif not target.perm_check("claims.claim"):

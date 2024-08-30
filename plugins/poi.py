@@ -89,7 +89,7 @@ class POI(StorageCommandPlugin):
             return
         planet = connection.player.location
         poi = " ".join(data).lower()
-        if not str(planet).startswith("ClientShipWorld") or planet.uuid \
+        if isinstance(planet, str) or planet.locationtype() != "ShipWorld" or planet.uuid \
                 != connection.player.uuid:
             send_message(connection,
                          "You must be on your ship for this to work.")
