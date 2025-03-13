@@ -231,19 +231,19 @@ class GeneralCommands(SimpleCommandPlugin):
             target = connection.player
         if len(data) == 0:
             alias = connection.player.name
-        conflict = self.plugins.player_manager.get_player_by_alias(alias)
-        if conflict and target != conflict:
-            raise ValueError("There's already a user by that name.")
-        else:
-            clean_alias = self.plugins['player_manager'].clean_name(alias)
-            if clean_alias is None:
-                send_message(connection,
-                             "Nickname contains no valid characters.")
-                return
-            old_alias = target.alias
-            target.alias = clean_alias
-            broadcast(connection, "{}'s name has been changed to {}".format(
-                old_alias, clean_alias))
+        # conflict = self.plugins.player_manager.get_player_by_alias(alias)
+        # if conflict and target != conflict:
+        #     raise ValueError("There's already a user by that name.")
+        # else:
+        clean_alias = self.plugins['player_manager'].clean_name(alias)
+        if clean_alias is None:
+            send_message(connection,
+                         "Nickname contains no valid characters.")
+            return
+        old_alias = target.alias
+        target.alias = clean_alias
+        broadcast(connection, "{}'s name has been changed to {}".format(
+            old_alias, clean_alias))
 
     @Command("serverwhoami",
              perm="general_commands.whoami",
