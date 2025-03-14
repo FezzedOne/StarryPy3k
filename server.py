@@ -320,6 +320,12 @@ async def main():
         fh_d.setFormatter(formatter)
         aiologger.addHandler(fh_d)
         logger.addHandler(fh_d)
+    else:
+        fh_d = logging.FileHandler("chat.log")
+        fh_d.setLevel(loglevel)
+        fh_d.setFormatter(formatter)
+        aiologger.addHandler(fh_d)
+        logger.addHandler(fh_d)
     ch = logging.StreamHandler()
     ch.setLevel(loglevel)
     ch.setFormatter(formatter)
