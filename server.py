@@ -4,6 +4,7 @@ import sys
 import signal
 import traceback
 
+from shutil import copy
 from configuration_manager import ConfigurationManager
 from data_parser import ChatReceived
 from packets import packets
@@ -314,13 +315,20 @@ async def main():
         datefmt='%Y-%m-%d %H:%M:%S')
     aiologger = logging.getLogger("asyncio")
     aiologger.setLevel(loglevel)
+
     if DEBUG:
+        for x in range(4, 0, -1):
+            copy("config/debug.log." + str(x), "config/debug.log." + str(x + 1))
+        copy("config/debug.log", "config/debug.log.1")
         fh_d = logging.FileHandler("config/debug.log")
         fh_d.setLevel(loglevel)
         fh_d.setFormatter(formatter)
         aiologger.addHandler(fh_d)
         logger.addHandler(fh_d)
     else:
+        for x in range(4, 0, -1):
+            copy("config/chat.log." + str(x), "config/chat.log." + str(x + 1))
+        copy("chat.log", "chat.log.1")
         fh_d = logging.FileHandler("chat.log")
         fh_d.setLevel(loglevel)
         fh_d.setFormatter(formatter)
