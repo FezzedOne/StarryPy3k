@@ -4,7 +4,7 @@ import sys
 import signal
 import traceback
 
-from os import path
+from os import path as filePath
 from shutil import copy
 from configuration_manager import ConfigurationManager
 from data_parser import ChatReceived
@@ -319,9 +319,9 @@ async def main():
 
     if DEBUG:
         for x in range(4, 0, -1):
-            if path.exists("config/debug.log." + str(x)):
+            if filePath.exists("config/debug.log." + str(x)):
                 copy("config/debug.log." + str(x), "config/debug.log." + str(x + 1))
-        if path.exists("config/debug.log"):
+        if filePath.exists("config/debug.log"):
             copy("config/debug.log", "config/debug.log.1")
         fh_d = logging.FileHandler("config/debug.log")
         fh_d.setLevel(loglevel)
@@ -330,9 +330,9 @@ async def main():
         logger.addHandler(fh_d)
     else:
         for x in range(4, 0, -1):
-            if path.exists("chat.log." + str(x)):
+            if filePath.exists("chat.log." + str(x)):
                 copy("chat.log." + str(x), "chat.log." + str(x + 1))
-        if path.exists("chat.log"):
+        if filePath.exists("chat.log"):
             copy("chat.log", "chat.log.1")
         fh_d = logging.FileHandler("chat.log")
         fh_d.setLevel(loglevel)
