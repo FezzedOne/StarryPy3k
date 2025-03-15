@@ -59,6 +59,12 @@ nosetests.xml
 #python virtualenv
 virtualenv
 .venv
+Pipfile
 
 # dev container
 .devcontainer
+
+# Sourcetrail files
+StarryPy3k.srctrlbm
+StarryPy3k.srctrldb
+StarryPy3l.srctrlprj
